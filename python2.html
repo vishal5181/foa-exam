@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Code Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        code {
+            display: block;
+            white-space: pre-wrap;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Code Showcase</h1>
+        <p>Below is the first Python code:</p>
+        <code id="pythonCode1">
+# SAURAV KUNDAR WIFE SEARCHING
+
+from collections import deque
+
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def bfs_with_breaks(root):
+    if not root:
+        return [], 0  # Return an empty list and total visited count of 0 if root is None
+
+    result = []
+    queue = deque([(root, [root.value])])  # Tuple of (node, path)
+
+    current_level = 0
+    total_visited = 0
+
+    while queue:
+        node, path = queue.popleft()
+        total_visited += 1  # Increment the count of visited nodes
+        level = len(path) - 1
+
+        if level > current_level:
+            result.append('\n')  # Inserting break after each level
+            current_level = level
+
+        result.append(' -> '.join(map(str, path)))  # Append path to result
+
+        for child in node.children:
+            queue.append((child, path + [child.value]))
+
+    return result, total_visited
+
+# Example usage:
+# Creating a tree
+root = TreeNode(1)
+root.children = [TreeNode(2), TreeNode(3), TreeNode(4)]
+root.children[0].children = [TreeNode(5), TreeNode(6), TreeNode(7)]
+root.children[1].children = [TreeNode(8), TreeNode(9), TreeNode(10)]
+root.children[2].children = [TreeNode(11), TreeNode(12), TreeNode(13)]
+
+# Performing BFS with breaks after each level
+print("Saurav Kundar visited people:")
+result, total_visited = bfs_with_breaks(root)
+for item in result:
+    print(item)
+print("\nTotal number of people visited:", total_visited)
+        </code>
+        <button onclick="copyCode('pythonCode1')">Copy Code</button>
+    </div>
+
+    <!-- Add the new Python code snippet here -->
+    <div class="container">
+        <h1>Python Code Showcase</h1>
+        <p>Below is the second Python code:</p>
+        <code id="pythonCode2">
+import random
+
+# Function to generate a list of random numbers within a specified range
+def generate_random_numbers(num):
+    random_numbers = [random.randint(0, 50) for _ in range(num)]
+    return random_numbers
+
+# Generating a list of 50 random numbers
+random_list = generate_random_numbers(50)
+print(random_list)
+print("\n")
+
+# Function to check if a number is a Fibonacci number
+def is_fibonacci(n):
+    # Function to check if a number is a perfect square
+    def is_perfect_square(num):
+        square_root = int(num ** 0.5)
+        return square_root * square_root == num
+
+    # Function to check if a number is a Fibonacci number using mathematical properties
+    def is_fib(n):
+        return is_perfect_square(5 * n * n + 4) or is_perfect_square(5 * n * n - 4)
+
+    return is_fib(n)
+
+# Function to filter Fibonacci numbers from a list of numbers
+def filter_fibonacci(numbers):
+    fibonacci_list = []  # Initialize an empty list to store Fibonacci numbers
+    for num in numbers:  # Iterate through each number in the input list
+        # Check if the number is Fibonacci and not already in the list
+        if is_fibonacci(num) and num not in fibonacci_list:
+            fibonacci_list.append(num)  # Add the Fibonacci number to the list
+    return fibonacci_list
+
+def traverse_fibonacci(numbers):
+    index = 0  # Initialize the index pointer
+    while True:
+        print("Current playing song number:", numbers[index])
+        direction = input("Enter '>' to play next song, '<' to play previous song, or 'x' to quit: ").lower()
+
+        if direction == 'next' or direction == 'n' or direction == '>':
+            index = (index + 1) % len(numbers)  # Move to the next Fibonacci number
+        elif direction == 'prev'or direction == 'p' or direction == '<':
+            index = (index - 1) % len(numbers)  # Move to the previous Fibonacci number
+        elif direction == 'exit' or direction == 'e' or direction == 'x':
+            print("Music Stopped.")
+            break
+        else:
+            print("Invalid input. Please enter 'next', 'prev', or 'exit'.")
+
+# Example usage: Filtering Fibonacci numbers from the generated random list
+fibonacci_numbers = filter_fibonacci(random_list)
+print("Song numbers in shuffle: \n", fibonacci_numbers,"\n")
+fibonacci_numbers.sort()  # Sorting the list of Fibonacci numbers
+print("Song numbers in queue: \n", fibonacci_numbers,"\n")
+traverse_fibonacci(fibonacci_numbers)
+        </code>
+        <button onclick="copyCode('pythonCode2')">Copy Code</button>
+    </div>
+
+    <!-- Add the new Python code snippet here -->
+    <div class="container">
+        <h1>Python Code Showcase</h1>
+        <p>Below is the third Python code:</p>
+        <code id="pythonCode3">
+# Rajnikant Plane Survival
+
+import random
+
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight=None) -> object:
+        if u not in self.graph:
+            self.graph[u] = []
+        self.graph[u].append((v, weight))
+
+    def dfs_util(self, v, visited):
+        visited.add(v)
+        total_weight = 0
+
+        for neighbor, weight in self.graph.get(v, []):
+            if neighbor not in visited:
+                print(" - Terrorist killed :", weight,"\nMoving To Plane :",neighbor)
+                total_weight += weight
+                total_weight += self.dfs_util(neighbor, visited)
+
+        return total_weight
+
+    def dfs(self, start):
+        visited = set()
+        total_weight = self.dfs_util(start, visited)
+        print("\nAfter Police Declaration Total Terrorist Killed :", total_weight)
+
+
+if __name__ == "__main__":
+    graph = Graph()
+
+    graph.add_edge(1, 2, random.randint(1, 5))
+    graph.add_edge(1, 6, random.randint(1, 5))
+    graph.add_edge(1, 7, random.randint(1, 5))
+    graph.add_edge(2, 3, random.randint(1, 5))
+    graph.add_edge(2, 4, random.randint(1, 5))
+    graph.add_edge(2, 5, random.randint(1, 5))
+
+    print("\nStarting from Plane : 1")
+    graph.dfs(1)
+        </code>
+        <button onclick="copyCode('pythonCode3')">Copy Code</button>
+    </div>
+    <div class="container">
+        <h1>CHICKEN DIVISION CODE</h1>
+        <p>Below is the  Python code:</p>
+        <code id="pythonCode4">
+# CHICKEN DIVISION CODE
+
+import random
+            
+def chicken_weight_sort(chicken_weights):
+    if len(chicken_weights) <= 1:
+        return chicken_weights
+            
+    mid = len(chicken_weights) // 2
+    left_half = chicken_weights[:mid]
+    right_half = chicken_weights[mid:]
+            
+    left_half = chicken_weight_sort(left_half)
+    right_half = chicken_weight_sort(right_half)
+            
+    return merge(left_half, right_half)
+            
+def merge(left, right):
+    merged = []
+    left_index = right_index = 0
+            
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            merged.append(left[left_index])
+            left_index += 1
+        else:
+            merged.append(right[right_index])
+            right_index += 1
+
+    merged.extend(left[left_index:])
+    merged.extend(right[right_index:])
+
+    return merged
+
+def binary_search(chicken_weights, target):
+    low = 0
+    high = len(chicken_weights) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        if abs(chicken_weights[mid] - target) < 0.01:  # for int - chicken_weights[mid] == target:
+            return mid
+        elif chicken_weights[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+            
+    return -1
+
+if __name__ == '__main__':
+    # Generate random chicken weights ranging from 1.0 to 5.0 with odecimal places
+    chicken_weights = [round(random.uniform(1.0, 5.0), 1) for _ in range(15)]
+    sorted_chicken_weights = chicken_weight_sort(chicken_weights)
+    print("\n .............................................\n", "!!! WELCOME TO JAMAL HALAL CHICKEN CENTRE !!!\n", ".............................................")
+    target_weight = float(input("\n Enter the weight of the chicken you want (or enter -1 to exit): "))  # Parse input as float
+    if target_weight != -1:
+        index = binary_search(sorted_chicken_weights, target_weight)
+        if index != -1:
+            print(f"\nFound chicken with weight {target_weight:.2f} at index {index}.")
+        else:
+            print(f"\n Sorry !!!\n Chicken with weight {target_weight:.2f} not found in our chicken's rack. :(\n","Here's the list of chicken weights that we have : \n", sorted_chicken_weights)
+            print("\n Thank you for visiting Jamal Halal Chicken Centre. Have a great day! :)")
+    else:
+        print("\n Thank you for visiting Jamal Halal Chicken Centre. Have a great day! :)")
+            
+        </code>
+        <button onclick="copyCode('pythonCode4')">Copy Code</button>
+    </div>
+    <div class="container">
+        <h1>Rajnikant Plane Survival</h1>
+        <p>Below is the  Python code:</p>
+        <code id="pythonCode5">
+# Rajnikant Plane Survival
+
+import random
+            
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_edge(self, u, v, weight=None) -> object:
+        if u not in self.graph:
+            self.graph[u] = []
+        self.graph[u].append((v, weight))
+
+    def dfs_util(self, v, visited):
+        visited.add(v)
+        total_weight = 0
+
+        for neighbor, weight in self.graph.get(v, []):
+            if neighbor not in visited:
+                print(" - Terrorist killed :", weight,"\nMoving To Plane :",neighbor)
+                total_weight += weight
+                total_weight += self.dfs_util(neighbor, visited)
+
+        return total_weight
+
+    def dfs(self, start):
+        visited = set()
+        total_weight = self.dfs_util(start, visited)
+        print("\nAfter Police Declaration Total Terrorist Killed :", total_weight)
+
+
+if __name__ == "__main__":
+    graph = Graph()
+
+    graph.add_edge(1, 2, random.randint(1, 5))
+    graph.add_edge(1, 6, random.randint(1, 5))
+    graph.add_edge(1, 7, random.randint(1, 5))
+    graph.add_edge(2, 3, random.randint(1, 5))
+    graph.add_edge(2, 4, random.randint(1, 5))
+    graph.add_edge(2, 5, random.randint(1, 5))
+
+    print("\nStarting from Plane : 1")
+    graph.dfs(1)            
+        </code>
+        <button onclick="copyCode('pythonCode5')">Copy Code</button>
+    </div>
+
+
+    <script>
+        function copyCode(codeId) {
+            var codeBlock = document.getElementById(codeId);
+            var range = document.createRange();
+            range.selectNode(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('Code copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
